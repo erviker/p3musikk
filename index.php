@@ -85,8 +85,21 @@ dcdraw("dbtotal");
 <div id="left">
 <?php
 
-indexlist(); 
 
+if($_GET["a"] && $_GET["s"]){
+$song = song($_GET["s"],$_GET["a"]);
+print $song;
+$songarr = songans($_GET["s"],$_GET["a"]);
+$playcount = playcount($_GET["s"],$_GET["a"]);
+print "<h3>spilt totalt {$playcount} ganger</h3>";
+//print "<a href=\"spotify:search:track:synthetic+romance+artist:cullen+omori\">spotify</a><br>";
+$youtubeid = youtubelink($_GET["s"],$_GET["a"]);
+//print "Youtube<br><a href=\"https://www.youtube.com/watch?v={$youtubeid}\"><img src=\"http://img.youtube.com/vi/{$youtubeid}/0.jpg\" height=\"100\" Width=\"120\"></a>";
+print "<iframe width=\"640\" height=\"488\" src=\"https://www.youtube.com/embed/{$youtubeid}\" frameborder=\"0\" allowfullscreen></iframe>";
+}
+else{
+indexlist(); 
+}
 ?>
 
 </div>
@@ -115,20 +128,6 @@ indexlist();
 </div>
 </div>
     <div class="yui-b">
-<?php
-
-if($_GET["a"] && $_GET["s"]){
-$song = song($_GET["s"],$_GET["a"]);
-print $song;
-$songarr = songans($_GET["s"],$_GET["a"]);
-$playcount = playcount($_GET["s"],$_GET["a"]);
-print "<h3>spilt totalt {$playcount} ganger</h3>";
-//print "<a href=\"spotify:search:track:synthetic+romance+artist:cullen+omori\">spotify</a><br>";
-$youtubeid = youtubelink($_GET["s"],$_GET["a"]);
-//print "Youtube<br><a href=\"https://www.youtube.com/watch?v={$youtubeid}\"><img src=\"http://img.youtube.com/vi/{$youtubeid}/0.jpg\" height=\"100\" Width=\"120\"></a>";
-print "<iframe width=\"640\" height=\"488\" src=\"https://www.youtube.com/embed/{$youtubeid}\" frameborder=\"0\" allowfullscreen></iframe>";
-}
-?>
 
 
       <div id="secondary">
