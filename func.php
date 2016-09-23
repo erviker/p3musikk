@@ -612,6 +612,7 @@ function getdata(){
         $artist = NULL;
         $song = NULL;
     }
+    if($song != NULL){$song = str_replace("(UKAS L▒~ET)","",$song);}
     return array($artist, $song);
 
 };
