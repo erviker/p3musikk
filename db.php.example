@@ -1,11 +1,11 @@
 <?php
 //google key
-$key = 'AIzaSyD8KHn5_9K1D5APov3Ynyrh8klbzGcMv84';
+$key = 'xxxxxxxxx';
 //
 /database
 $servername = "localhost";
-$username = "root";
-$password = "Apollo14";
+$username = "user";
+$password = "password";
 $dbname = "p3musikk";
 
 // Create connection
