@@ -148,7 +148,7 @@ function insertdbstats() {
 function youtubelink($sid,$aid){
     $songraw = songans($sid,$aid);
     $song = "{$songraw["artist"]["name"]} - {$songraw["song"]["name"]}";
-    $songid = yts($song);
+    $songid = yts($song,$key);
     return $songid;
 }
 
@@ -617,7 +617,7 @@ function getdata(){
 };
 
 
-function yts($q) {
+function yts($q,$key) {
 
     set_include_path(get_include_path() . PATH_SEPARATOR . '/var/www/google-api-php-client/src');
     // Call set_include_path() as needed to point to your client library.
@@ -629,7 +629,7 @@ function yts($q) {
      * {{ Google Cloud Console }} <{{ https://cloud.google.com/console }}>
      * Please ensure that you have enabled the YouTube Data API for your project.
      */
-    $DEVELOPER_KEY = 'XXXXXXXXXXXXXXXXXXXXX';
+    $DEVELOPER_KEY = $key;
     $client = new Google_Client();
     $client->setDeveloperKey($DEVELOPER_KEY);
     // Define an object that will be used to make all API requests.
