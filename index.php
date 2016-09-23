@@ -95,7 +95,7 @@ print "<h3>spilt totalt {$playcount} ganger</h3>";
 //print "<a href=\"spotify:search:track:synthetic+romance+artist:cullen+omori\">spotify</a><br>";
 $youtubeid = youtubelink($_GET["s"],$_GET["a"]);
 //print "Youtube<br><a href=\"https://www.youtube.com/watch?v={$youtubeid}\"><img src=\"http://img.youtube.com/vi/{$youtubeid}/0.jpg\" height=\"100\" Width=\"120\"></a>";
-print "<iframe width=\"640\" height=\"488\" src=\"https://www.youtube.com/embed/{$youtubeid}\" frameborder=\"0\" allowfullscreen></iframe>";
+print "<iframe width=\"500\" height=\"275\" src=\"https://www.youtube.com/embed/{$youtubeid}\" frameborder=\"0\" allowfullscreen></iframe>";
 }
 else{
 indexlist(); 
@@ -128,18 +128,13 @@ indexlist();
 </div>
 </div>
     <div class="yui-b">
-
-
       <div id="secondary">
+<div id="newest">
+<p>laster...</p>
     </div>
   </div>
   <div id="ft">
     <div id="footer">
-<div id="newest">
-<p>laster...</p>
-</div>
-</br>
-</br>
 <?php
 $end_time = microtime(TRUE);
 $time_taken = $end_time - $start_time;
@@ -147,6 +142,9 @@ $time_taken = round($time_taken,5);
 echo 'Page generated in '.$time_taken.' seconds.';
 echo "</br> &copy; Erviker IT" 
 ?>
+</div>
+</br>
+</br>
 </div>
   </div>
 </div>
