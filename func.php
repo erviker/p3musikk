@@ -26,7 +26,7 @@ function search($post){
             }
         }
         $i = 0;
-        $sql = "SELECT DISTINCT `artist`,`song`FROM `speleliste`WHERE `song` = '{$s["id"]}'"; 
+        $sql = "SELECT DISTINCT `artist`,`song`FROM `speleliste`WHERE `song` = '{$s["id"]}'";
         $result = $conn->query($sql);
         if($result->num_rows > 0){
             while($row = $result->fetch_assoc()) {
@@ -36,7 +36,7 @@ function search($post){
                 $s["artist"][$i]["playcount"] = playcount($s["id"], $row["artist"]);
                 $i++;
             }
-        } 
+        }
     }
     if($post["type"] = "2"){
         $s["type"] = 2;
@@ -49,7 +49,7 @@ function search($post){
             }
         }
         $i = 0;
-        $sql = "SELECT DISTINCT `artist`,`song`FROM `speleliste`WHERE `artist` = '{$s["id"]}'"; 
+        $sql = "SELECT DISTINCT `artist`,`song`FROM `speleliste`WHERE `artist` = '{$s["id"]}'";
         $result = $conn->query($sql);
         if($result->num_rows > 0){
             while($row = $result->fetch_assoc()) {
@@ -112,7 +112,7 @@ function prepchartdbday($array){
         $array[$i]["time"] = $array[$i]["time"] - 3600;
         $arr[$i][0] = date("d.m.y", "{$array[$i]["time"]}") ;
         $arr[$i][1] = (int)$array[$i]["artist"];
-        $arr[$i][2] = (int)$array[$i]["song"]; 
+        $arr[$i][2] = (int)$array[$i]["song"];
     }
     $arr = array_reverse($arr);
     return $arr;
@@ -129,9 +129,9 @@ function dcdbdata($div, $horz, $vert, $vert2, $data) {
     print "
 
     var data_{$div} = new google.visualization.DataTable();
-    data_{$div}.addColumn('string', '{$horz}'); 
-    data_{$div}.addColumn('number', '{$vert}'); 
-    data_{$div}.addColumn('number', '{$vert2}'); 
+    data_{$div}.addColumn('string', '{$horz}');
+    data_{$div}.addColumn('number', '{$vert}');
+    data_{$div}.addColumn('number', '{$vert2}');
     data_{$div}.addRows( ";
     echo(json_encode($data));
     echo ");";
@@ -146,6 +146,7 @@ function insertdbstats() {
     $result = $conn->query($sql);
 }
 function youtubelink($sid,$aid){
+    include("db.php");
     $songraw = songans($sid,$aid);
     $song = "{$songraw["artist"]["name"]} - {$songraw["song"]["name"]}";
     $songid = yts($song,$key);
@@ -166,7 +167,7 @@ function playcount($sid,$aid){
     $result = $conn->query($sql);
     $pcc = $result->num_rows;
     $conn->close();
-    return $pcc;    
+    return $pcc;
 }
 
 function songans($sid,$aid) {
@@ -225,7 +226,7 @@ function dbstats() {
     $result = $conn->query($sql);
     $dbstats["sp"] = $result->num_rows;
     $conn->close();
-    return $dbstats;    
+    return $dbstats;
 }
 
 function newest() {
@@ -273,8 +274,8 @@ function dcdata($div, $horz, $vert, $data) {
     print "
 
     var data_{$div} = new google.visualization.DataTable();
-    data_{$div}.addColumn('string', '{$horz}'); 
-    data_{$div}.addColumn('number', '{$vert}'); 
+    data_{$div}.addColumn('string', '{$horz}');
+    data_{$div}.addColumn('number', '{$vert}');
     data_{$div}.addRows( ";
     echo(json_encode($data));
     echo ");";
@@ -329,7 +330,7 @@ function indexlist(){
     $arr = getsp(7);
     $ans = getans($arr);
     $sort = sorter($ans);
-    print"<h3>TOP 20 siste 7 dagane</h3>"; 
+    print"<h3>TOP 20 siste 7 dagane</h3>";
     for ($i = 0; $i < 19; ++$i) {
         echo "<a href=\"?a={$sort[$i]["artist"]}&s={$sort[$i]["sid"]}\">";
         echo "{$sort[$i]["aname"]} - {$sort[$i]["sname"]} (spilt: {$sort[$i]["pc"]})";
@@ -342,7 +343,7 @@ function alltime(){
     $arr = getsp(365);
     $ans = getans($arr);
     $sort = sorter($ans);
-    print"<h3>TOP 20 siste 1000 dagane</h3>"; 
+    print"<h3>TOP 20 siste 1000 dagane</h3>";
     for ($i = 0; $i < 19; ++$i) {
         echo "<a href=\"?a={$sort[$i]["artist"]}&s={$sort[$i]["sid"]}\">";
         echo "{$sort[$i]["aname"]} - {$sort[$i]["sname"]} (spilt: {$sort[$i]["pc"]})";
@@ -482,7 +483,7 @@ function playbyyear($aid, $sid){
 function prepchart($array){
     for ($i = 0; $i < 30; ++$i) {
         $arr[$i][0] = $array[$i]["aname"] ." - ". $array[$i]["sname"] ;
-        $arr[$i][1] = $array[$i]["pc"]; 
+        $arr[$i][1] = $array[$i]["pc"];
     }
 
 
@@ -494,7 +495,7 @@ function prepchartday($array){
 
 
         $arr[$i][0] = date("d.m.y", $array[$i]["time"]) ;
-        $arr[$i][1] = $array[$i]["pc"]; 
+        $arr[$i][1] = $array[$i]["pc"];
     }
     $arr = array_reverse($arr);
 
@@ -504,7 +505,7 @@ function prepchartday($array){
 function prepchartweek($array){
     for ($i = 0; $i < 6; ++$i) {
         $arr[$i][0] = date("W", $array[$i]["time"]) ;
-        $arr[$i][1] = $array[$i]["pc"]; 
+        $arr[$i][1] = $array[$i]["pc"];
     }
     $arr = array_reverse($arr);
 
